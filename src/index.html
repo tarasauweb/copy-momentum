@@ -4,14 +4,44 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ScSS</title>
+    <title>Momentum</title>
 </head>
 <body>
     <header class="header">
         <div class="container">
-            <h1 class="title">
-                ScSS App
-            </h1>
+            <div class="wrapper">
+                <div class="player">
+                    <div class="player__controls">
+                        <button class="player__btn player__btn_prev">
+                            <img src="./img/play-prev.svg" alt="song prev" class="player__img">
+                        </button>
+                        <button class="player__btn player__btn_play">
+                            <img src="./img/play.svg" alt="play" class="player__img player__img_play">
+                        </button>
+                        <button class="player__btn player__btn_next">
+                            <img src="./img/play-next.svg" alt="song next" class="player__img">
+                        </button>
+                    </div>
+                    <ul class="player__list">
+                        <li class="player__track">
+                            track 1
+                        </li>
+                        <li class="player__track">
+                            track 2
+                        </li>
+                        <li class="player__track">
+                            track 3
+                        </li>
+                    </ul>
+                </div>
+                <div class="weather">
+                    <input type="text" value="Minsk" class="weather__input">
+                    <img src="" alt="weather" class="weather__img">
+                    <div class="weather__temp">C</div>
+                    <div class="weather__wind"></div>
+                    <div class="weather__humidity"></div>
+                </div>
+            </div>
         </div>
     </header>
 </body>
