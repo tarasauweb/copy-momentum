@@ -1,0 +1,16 @@
+$bk-ground:rgb(41, 36, 36);
+$color:rgb(219, 213, 213);
+
+body{
+    background-color: $bk-ground;
+    color: $color;
+}
+.header{
+    .container{
+        width: 1140px;
+        margin: 0 auto;
+        h1{
+            color: aqua;
+        }
+    }
+}
