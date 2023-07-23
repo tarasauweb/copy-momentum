@@ -7,6 +7,7 @@ const weatherImg = document.querySelector('.weather__img') as HTMLImageElement;
 const weatherTemp = document.querySelector('.weather__temp') as HTMLElement;
 const weatherWind = document.querySelector('.weather__wind') as HTMLElement;
 const weatherHumidity = document.querySelector('.weather__humidity') as HTMLElement;
+const weatherdescription = document.querySelector('.weather__description') as HTMLElement;
 
 
-const weather = new Weather(weatherInput,weatherImg,weatherTemp,weatherWind,weatherHumidity);
+const weather = new Weather(weatherInput,weatherdescription,weatherImg,weatherTemp,weatherWind,weatherHumidity);
