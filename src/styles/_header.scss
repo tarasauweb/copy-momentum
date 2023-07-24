@@ -1,0 +1,8 @@
+.header{
+  padding-top: 20px;
+  .wrapper{
+    display: grid;
+    grid-template-columns:300px 200px;
+    justify-content: space-between;
+  }
+}

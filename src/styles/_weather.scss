@@ -1,0 +1,18 @@
+.weather{
+  &__input{
+    @extend %btn-input-reset;
+    border-bottom: 2px solid  $color;
+    color: $color;
+    font-weight: 700;
+    font-size: 1.3em;
+    width: 100%;
+    padding-bottom: 7px;
+  }
+  &__desc{
+    @include flex(flex-start);
+    margin-top: 10px;
+    .weather__img{
+      margin-left: 5px;
+    }
+  }
+}

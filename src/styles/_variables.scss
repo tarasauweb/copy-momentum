@@ -1,0 +1,14 @@
+$bk-ground:rgb(41, 36, 36);
+$color:rgb(219, 213, 213);
+
+%btn-input-reset{
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+@mixin flex($j-content:center,$a-items:center,$f-direction:row){
+  display: flex;
+  justify-content: $j-content;
+  align-items: $a-items;
+  flex-direction: $f-direction;
+}
