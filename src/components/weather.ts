@@ -17,13 +17,17 @@ class Weather {
     this.handlerInput();
   }
   private handlerInput ():void {
-    this.city === '' ? this.getWeather(this.input.value) : this.getWeather(this.city)
+    console.log(localStorage)
+    // this.city === '' ? this.getWeather(this.input.value) : this.getWeather(this.city);
+    localStorage.getItem('city') !== null ? this.getWeather(localStorage.getItem('city')) : this.getWeather(this.input.value);
+    localStorage.getItem('city') !== null ? this.input.value = localStorage.getItem('city') || '' : this.input.value = 'Minsk';
     this.input.addEventListener('change' , ()=>{
-      this.city = this.input.value
-      this.getWeather(this.city)
+      this.city = this.input.value;
+      localStorage.setItem('city' , this.city);
+      this.getWeather(this.city);
     })
   }
-  private async getWeather (value:string) {
+  private async getWeather (value:string | null) {
     const urlWather = `https://api.openweathermap.org/data/2.5/weather?q=${value}&lang=ru&appid=0a150ef70c52f948a15ad635e3700be9&units=metric`;
     try{
       const response = await fetch(urlWather);
