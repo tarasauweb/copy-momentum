@@ -1,0 +1,42 @@
+main {
+  .time{
+    grid-area: time;
+    font-size: 100px;
+    text-align: $tac;
+    margin-top: 5%;
+  }
+  .day{
+    text-align: $tac;
+    font-size: 22px;
+    grid-area: day;
+  }
+  .greeting {
+    text-align: right;
+    font-size: 35px;
+    width: 250px;
+
+  }
+  .subblock{
+    grid-area: greeting;
+    width: 100%;
+    margin-top: 10px;
+    @include flex();
+    input{
+      margin-left: 10px;
+      @extend %btn-input-reset;
+      font-size: 35px;
+      color: $color;
+      width: 300px;
+      margin-top: 3px;
+    }
+  }
+}
+.container-time{
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: 1fr 0.1fr 0.1fr;
+  grid-template-areas: 'time'
+                        'day'
+                        'greeting'
+  ;
+}
