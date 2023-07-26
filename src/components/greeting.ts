@@ -19,16 +19,16 @@ class Greeting {
       this.divTime.textContent = new Date().toLocaleTimeString();
     },1000)
     this.divDay.textContent = `${days[date.getDay()]}, ${month[date.getMonth()]} ${date.getDate()}`;
-    if(date.getHours() > 5 && date.getHours() <12){
+    if(date.getHours() > 5 && date.getHours() < 12){
       this.divGreet.textContent = `Good morning,`;
     }
-    if(date.getHours()>12 && date.getHours() < 18) {
-      this.divGreet.textContent = `Good day,`;
+    if(date.getHours() > 11 && date.getHours() < 18) {
+      this.divGreet.textContent = `Good afternoon,`;
     }
-    if(date.getHours()>18 && date.getHours() < 24 ) {
+    if(date.getHours() > 18 && date.getHours() < 24 ) {
       this.divGreet.textContent = `Good evening,`;
     }
-    if(date.getHours()>=0 && date.getHours()< 6) {
+    if(date.getHours() >= 0 && date.getHours() < 6) {
       this.divGreet.textContent = `Good night,`;
     }
   }

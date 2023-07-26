@@ -13,7 +13,7 @@ main {
   .greeting {
     text-align: right;
     font-size: 35px;
-    width: 250px;
+    width: 270px;
 
   }
   .subblock{
@@ -39,4 +39,23 @@ main {
                         'day'
                         'greeting'
   ;
+}
+.slider{
+ width: 100%;
+ @include flex(space-between);
+ button{
+  position: absolute;
+  top:50%;
+  transform: translate(0,-50%);
+  width: $indent-20px;
+  height: $indent-20px;
+  @extend %btn-input-reset;
+  cursor: pointer;
+ }
+ &__prev{
+  left:$indent-20px;
+ }
+ &__next{
+  right:$indent-20px;
+ }
 }

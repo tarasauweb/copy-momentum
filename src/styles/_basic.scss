@@ -12,6 +12,9 @@ body{
     height: 100vh;
     font-weight: 700;
     overflow: hidden;
+    position: relative;
+    background-blend-mode: multiply;
+    transition: background-image 1s ease-in-out;
 }
 a,ul,li,button{
     display: block;
