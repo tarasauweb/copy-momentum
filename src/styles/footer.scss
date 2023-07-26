@@ -25,9 +25,6 @@
     color: black;
     padding: 10px;
     position: relative;
-    &__lang{
-      right: 55px !important;
-    }
     &::after{
       content: '';
       display: block;
@@ -39,22 +36,26 @@
       left:50%;
       border-radius: 5px;
     }
-    &__item{
+    &__items{
+      @include flex(space-between,flex-start);
+    }
+    &__nav{
       display: none;
       position: absolute;
-      top:0px;
-      right: 30px;
-      
+      top:20px;
+      right: 0px;
+      width: 100px;
     }
-    &__items{
+    &__subscribe{
       cursor: pointer;
-      display: flex;
-      margin-bottom: 20px;
-      position: relative;
-      &:hover .menu__item{
-        @include flex(center,flex-start,column);
-        margin-left: 30px;
-      }
+      margin-bottom: 10px;
+      width: 100px;
     }
   }
+  
 }
+.menu__items:hover .menu__nav{
+  display: block !important;
+}
+
+
