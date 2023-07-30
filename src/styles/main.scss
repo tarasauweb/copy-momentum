@@ -51,11 +51,21 @@ main {
   height: $indent-20px;
   @extend %btn-input-reset;
   cursor: pointer;
+  transition: 0.5s;
+  
  }
  &__prev{
   left:$indent-20px;
+  &:hover{
+    transition: 0.5s;
+    transform: translate(-20%,-50%);
+  }
  }
  &__next{
   right:$indent-20px;
+  &:hover{
+    transition: 0.5s;
+    transform: translate(20%,-50%);
+  }
  }
 }
