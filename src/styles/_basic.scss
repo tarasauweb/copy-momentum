@@ -15,6 +15,7 @@ body{
     position: relative;
     background-blend-mode: multiply;
     transition: background-image 1s ease-in-out;
+    display: grid;
 }
 a,ul,li,button{
     display: block;
@@ -27,7 +28,7 @@ img{
     height: auto;
 }
 .container{
-    max-width: 1200px;
+    max-width: 1920px;
     margin: 0 auto;
     padding: 0 15px;
 }

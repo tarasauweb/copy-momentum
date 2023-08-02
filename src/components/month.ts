@@ -1,4 +1,4 @@
-enum month {
+enum Enummonth {
   'January',
   'February',
   'March',
@@ -13,6 +13,6 @@ enum month {
   'December'
 }
 
-export default month
+export default Enummonth
 
 // ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December']

@@ -9,7 +9,7 @@ class Settings {
   }
   private createSettingsBlock() {
     const settingsDiv = document.createElement('div');
-    settingsDiv.insertAdjacentHTML('afterbegin' , Menu())
+    settingsDiv.insertAdjacentHTML('afterbegin' , Menu());
     settingsDiv.classList.add('settings__block');
     this.footerContainer.insertAdjacentElement('afterbegin' , settingsDiv);
   }
@@ -30,8 +30,6 @@ class Settings {
         allSettings.style.display = 'block';
         openSettings = true;
       }
-      
-      
     })
   }
 

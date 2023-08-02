@@ -14,9 +14,6 @@ function Menu () : string {
                 flickr
               </li>
               <li class="menu__subitem">
-                github
-              </li>
-              <li class="menu__subitem">
                 unsplash
               </li>
             </ul>

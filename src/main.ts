@@ -4,6 +4,7 @@ import Weather from './components/weather';
 import Greeting from './components/greeting';
 import Slider from './components/slider';
 import Settings from './components/settings';
+import TypeApiSlider from './components/typesApiSlider';
 // HTML Elements for weather block
 const weatherInput = document.querySelector('.weather__input') as HTMLInputElement;
 const weatherImg = document.querySelector('.weather__img') as HTMLImageElement;
@@ -29,7 +30,8 @@ const body = document.body as HTMLEmbedElement;
 const btnPrev = document.querySelector('.slider__prev') as HTMLElement;
 const btnNext = document.querySelector('.slider__next') as HTMLElement;
 
-const slider = new Slider(btnPrev,btnNext,body,apiObjects)
+const slider = new Slider(btnPrev,btnNext,body,apiObjects);
+slider.setBackground('flickr')
 
 // 
 

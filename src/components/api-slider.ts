@@ -5,12 +5,6 @@ export const apiObjects : object = {
       afternoon:'https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=3491125f73a0a55afad1acd83ec6e296&gallery_id=185118123-72157720111881805&extras=url_h&format=json&nojsoncallback=1',
       morning:'https://www.flickr.com/services/rest/?method=flickr.galleries.getPhotos&api_key=3491125f73a0a55afad1acd83ec6e296&gallery_id=185118123-72157720069530982&extras=url_h&format=json&nojsoncallback=1'
   },
-  gitHub : {
-      morning:'https://github.com/irinainina/ready-projects/tree/momentum/momentum/assets/images/morning',
-      afternoon:'https://github.com/irinainina/ready-projects/tree/momentum/momentum/assets/images/day',
-      evening:'https://github.com/irinainina/ready-projects/tree/momentum/momentum/assets/images/evening',
-      night:'https://github.com/irinainina/ready-projects/tree/momentum/momentum/assets/images/night'
-  },
   unsplash : {
       morning:'https://api.unsplash.com/photos/?orientation=landscape&query=morning&client_id=ZqKVia0DWkRZyurS8b_VEf0eI63tJhT_Of9_Kw_prq8',
       afternoon:'https://api.unsplash.com/photos/?orientation=landscape&query=afternoon&client_id=ZqKVia0DWkRZyurS8b_VEf0eI63tJhT_Of9_Kw_prq8',

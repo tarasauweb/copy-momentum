@@ -1,5 +1,5 @@
 import { resolve } from "../../webpack.config";
-
+import TypeApiSlider from "./typesApiSlider";
 class Slider {
   btnPrev: HTMLElement;
   btnNext: HTMLElement;
@@ -22,12 +22,6 @@ class Slider {
     this.numberSlide = 0;
     this.timeOfDay = '';
     this.arrayImage = [];
-    this.setBackGroundBodyFlickrApi ();
-    // this.setBackGroundBodyUnspleshApi();
-    // this.setBackGroundBodyGitHubApi();
-    // this.listenerSlider(this.setBackGroundBodyUnspleshApi());
-    // this.listenerSlider(this.setBackGroundBodyFlickrApi());
-    this.listenerSlider(this.setBackGroundBodyGitHubApi());
   }
   private getTimeOfDay():string {
     const date = new Date();
@@ -46,7 +40,11 @@ class Slider {
     }
     return timeOfDay
   }
-  private async setBackGroundBodyFlickrApi ():Promise<Array<string>> {
+  public setBackground (apiSlider:TypeApiSlider) {
+    apiSlider === 'flickr' ? this.listenerSlider(this.getFlickrApi()) : false ? apiSlider === 'unsplash' : this.listenerSlider(this.getUnspleshApi());
+    
+  }
+  private async getFlickrApi () : Promise<Array<string>> {
     this.timeOfDay = this.getTimeOfDay();
     const getUrl = (this.api as any).flickr[`${this.timeOfDay}`];
     const data = await fetch(getUrl);
@@ -58,35 +56,27 @@ class Slider {
     });
     return this.arrayImage
   }
-  private listenerSlider (data:Promise<Array<string>> | Promise<string>) {
-
+  private listenerSlider (data:Promise<Array<string>>) {
     data.then((res)=>{
-      console.log(res)
-      // this.btnPrev.addEventListener('click' , ()=>{
-      //   --this.numberSlide;
-      //   if(this.numberSlide <= 0) {
-      //     this.numberSlide = res.length-1;
-      //   }
-      //   this.body.style.background = this.returnUrlSlider(res[this.numberSlide]);
-      // })
-      // this.btnNext.addEventListener('click' , ()=>{
-      //   ++this.numberSlide;
-      //   if(this.numberSlide >= res.length) {
-      //     this.numberSlide = 0;
-      //   }
-      //   this.body.style.background = this.returnUrlSlider(res[this.numberSlide]);
-      // })
-      // this.body.style.background = this.returnUrlSlider(res[this.numberSlide]);
+      this.btnPrev.addEventListener('click' , ()=>{
+        --this.numberSlide;
+        if(this.numberSlide <= 0) {
+          this.numberSlide = res.length-1;
+        }
+        this.body.style.background = this.returnUrlSlider(res[this.numberSlide]);
+      })
+      this.btnNext.addEventListener('click' , ()=>{
+        ++this.numberSlide;
+        if(this.numberSlide >= res.length) {
+          this.numberSlide = 0;
+        }
+        this.body.style.background = this.returnUrlSlider(res[this.numberSlide]);
+      })
+      this.body.style.background = this.returnUrlSlider(res[this.numberSlide]);
     })
     
   }
-  private setBackGroundBodyGitHubApi () : Promise<string> {
-    this.timeOfDay = this.getTimeOfDay();
-    return Promise.resolve((this.api as any).gitHub[`${this.timeOfDay}`])
-    
-  }
-
-  private async setBackGroundBodyUnspleshApi () : Promise<Array<string>> {
+  private async getUnspleshApi () : Promise<Array<string>> {
     this.timeOfDay = this.getTimeOfDay();
     const data = await fetch((this.api as any).unsplash[`${this.timeOfDay}`]);
     const response = await data.json();

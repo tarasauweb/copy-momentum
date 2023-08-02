@@ -1,5 +1,5 @@
-import days from './days';
-import month from './month';
+import EnumDays from './days';
+import Enummonth from './month';
 class Greeting {
   divTime:HTMLElement;
   divDay:HTMLElement;
@@ -18,7 +18,7 @@ class Greeting {
     const timer = setInterval(()=>{
       this.divTime.textContent = new Date().toLocaleTimeString();
     },1000)
-    this.divDay.textContent = `${days[date.getDay()]}, ${month[date.getMonth()]} ${date.getDate()}`;
+    this.divDay.textContent = `${EnumDays[date.getDay()]}, ${Enummonth[date.getMonth()]} ${date.getDate()}`;
     if(date.getHours() > 5 && date.getHours() < 12){
       this.divGreet.textContent = `Good morning,`;
     }

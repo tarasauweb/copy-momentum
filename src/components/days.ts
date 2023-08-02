@@ -1,4 +1,4 @@
-enum days {
+enum  EnumDays {
   'Monday' = 1,
   "Tuesday" = 2,
   "Wednesday" = 3,
@@ -8,6 +8,6 @@ enum days {
   "Sunday" = 7
 }
 
-export default days
+export default EnumDays
 
 // arrDays : string [] = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
