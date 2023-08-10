@@ -9,7 +9,7 @@ function Menu () : string {
         </ul>
         <ul class="menu__nav">
           <li class="menu__subitems">
-            <ul class="menu__submenu">
+            <ul class="menu__submenu menu__submenu_background">
               <li class="menu__subitem">
                 flickr
               </li>

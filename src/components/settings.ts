@@ -1,5 +1,7 @@
 import Menu from "./menu";
 const settingsImg = '../img/settings.svg' as string;
+import TypeApiSlider from "./typesApiSlider";
+import Slider from "./slider";
 class Settings {
   footerContainer:HTMLElement;
   constructor (footerContainer:HTMLElement) {
@@ -32,7 +34,6 @@ class Settings {
       }
     })
   }
-
   
 }
 

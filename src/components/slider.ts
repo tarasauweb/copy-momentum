@@ -1,9 +1,9 @@
-import { resolve } from "../../webpack.config";
 import TypeApiSlider from "./typesApiSlider";
 class Slider {
   btnPrev: HTMLElement;
   btnNext: HTMLElement;
   body: HTMLElement;
+  menuBackGround:HTMLElement;
   api: object;
   numberSlide:number;
   timeOfDay:string;
@@ -13,7 +13,7 @@ class Slider {
     btnNext: HTMLElement,
     body: HTMLElement,
     api: object,
-    
+    menuBackGround:HTMLElement,
   ) {
     this.btnPrev = btnPrev;
     this.btnNext = btnNext;
@@ -22,8 +22,11 @@ class Slider {
     this.numberSlide = 0;
     this.timeOfDay = '';
     this.arrayImage = [];
+    this.menuBackGround = menuBackGround;
+    this.setBackground('flickr');
+    this.listenerMenu ();
   }
-  private getTimeOfDay():string {
+  private getTimeOfDay() : string {
     const date = new Date();
     let timeOfDay = '';
     if (date.getHours() > 5 && date.getHours() < 12) {
@@ -38,25 +41,32 @@ class Slider {
     if (date.getHours() >= 0 && date.getHours() < 6) {
         timeOfDay =`night`;
     }
-    return timeOfDay
+    return timeOfDay;
   }
-  public setBackground (apiSlider:TypeApiSlider) {
+  private listenerMenu () {
+    this.menuBackGround.addEventListener('click' , (e)=>{
+      const api = (e.target as HTMLElement).textContent?.trim() as TypeApiSlider;
+      this.setBackground(api);
+    })
+  }
+  private setBackground (apiSlider:TypeApiSlider) {
     apiSlider === 'flickr' ? this.listenerSlider(this.getFlickrApi()) : false ? apiSlider === 'unsplash' : this.listenerSlider(this.getUnspleshApi());
     
   }
   private async getFlickrApi () : Promise<Array<string>> {
+    this.clearArrayImage(this.arrayImage);
     this.timeOfDay = this.getTimeOfDay();
     const getUrl = (this.api as any).flickr[`${this.timeOfDay}`];
     const data = await fetch(getUrl);
     const response = await data.json();
-    response.photos.photo.find((element:any) => {
+    response.photos.photo.find((element : any) => {
         if(element.url_h){
             this.arrayImage.push(element.url_h);
         }
     });
     return this.arrayImage
   }
-  private listenerSlider (data:Promise<Array<string>>) {
+  private async listenerSlider (data : Promise<Array<string>>) {
     data.then((res)=>{
       this.btnPrev.addEventListener('click' , ()=>{
         --this.numberSlide;
@@ -77,6 +87,7 @@ class Slider {
     
   }
   private async getUnspleshApi () : Promise<Array<string>> {
+    this.clearArrayImage(this.arrayImage);
     this.timeOfDay = this.getTimeOfDay();
     const data = await fetch((this.api as any).unsplash[`${this.timeOfDay}`]);
     const response = await data.json();
@@ -85,8 +96,13 @@ class Slider {
     });
     return this.arrayImage
   }
-
-  private returnUrlSlider (linkImg:string) : string {
+  private clearArrayImage (array:Array<string>) : Array<string> {
+    if(array.length !== 0) {
+      array.splice(0,array.length-1)
+    }
+    return array
+  }
+  private returnUrlSlider (linkImg : string) : string {
     return `url(${linkImg}) no-repeat center center /cover`;
   }
 }

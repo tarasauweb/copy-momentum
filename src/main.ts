@@ -4,7 +4,6 @@ import Weather from './components/weather';
 import Greeting from './components/greeting';
 import Slider from './components/slider';
 import Settings from './components/settings';
-import TypeApiSlider from './components/typesApiSlider';
 // HTML Elements for weather block
 const weatherInput = document.querySelector('.weather__input') as HTMLInputElement;
 const weatherImg = document.querySelector('.weather__img') as HTMLImageElement;
@@ -12,6 +11,11 @@ const weatherTemp = document.querySelector('.weather__temp') as HTMLElement;
 const weatherWind = document.querySelector('.weather__wind') as HTMLElement;
 const weatherHumidity = document.querySelector('.weather__humidity') as HTMLElement;
 const weatherdescription = document.querySelector('.weather__description') as HTMLElement;
+
+// Settings 
+const footerContainer = document.querySelector('.footer .container') as HTMLElement;
+const settings = new Settings(footerContainer)
+
 // Class for starting Weather 
 const weather = new Weather(weatherInput,weatherdescription,weatherImg,weatherTemp,weatherWind,weatherHumidity);
 // 
@@ -29,12 +33,7 @@ const myGreeting = new Greeting(time,day,greeting,greetingInput)
 const body = document.body as HTMLEmbedElement;
 const btnPrev = document.querySelector('.slider__prev') as HTMLElement;
 const btnNext = document.querySelector('.slider__next') as HTMLElement;
+const menuBackGround = document.querySelector('.menu__submenu_background') as HTMLElement ; 
+const slider = new Slider(btnPrev,btnNext,body,apiObjects,menuBackGround);
 
-const slider = new Slider(btnPrev,btnNext,body,apiObjects);
-slider.setBackground('flickr')
 
-// 
-
-// Settings 
-const footerContainer = document.querySelector('.footer .container') as HTMLElement;
-const settings = new Settings(footerContainer)
