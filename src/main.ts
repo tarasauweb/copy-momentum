@@ -4,6 +4,7 @@ import Weather from './components/weather';
 import Greeting from './components/greeting';
 import Slider from './components/slider';
 import Settings from './components/settings';
+import Quotes from './components/quotes';
 // HTML Elements for weather block
 const weatherInput = document.querySelector('.weather__input') as HTMLInputElement;
 const weatherImg = document.querySelector('.weather__img') as HTMLImageElement;
@@ -36,4 +37,8 @@ const btnNext = document.querySelector('.slider__next') as HTMLElement;
 const menuBackGround = document.querySelector('.menu__submenu_background') as HTMLElement ; 
 const slider = new Slider(btnPrev,btnNext,body,apiObjects,menuBackGround);
 
+
+// 
+
+const quotes = new Quotes();
 
