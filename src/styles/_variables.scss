@@ -8,6 +8,17 @@ $indent-20px:20px;
   border: none;
   outline: none;
 }
+
+%footer-btns{
+  width: 40px;
+  height: 40px;
+  cursor: pointer;
+  transition: 0.5s;
+  &:hover{
+    transition: 0.5s;
+    transform: rotate(30deg);
+  }
+}
 @mixin flex($j-content:center,$a-items:center,$f-direction:row){
   display: flex;
   justify-content: $j-content;

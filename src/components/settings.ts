@@ -1,30 +1,33 @@
 import Menu from "./menu";
 const settingsImg = '../img/settings.svg' as string;
-import TypeApiSlider from "./typesApiSlider";
-import Slider from "./slider";
 class Settings {
   footerContainer:HTMLElement;
   constructor (footerContainer:HTMLElement) {
     this.footerContainer = footerContainer;
-    this.createBtnSettings();
     this.createSettingsBlock();
+    this.createBtnSettings();
   }
   private createSettingsBlock() {
-    const settingsDiv = document.createElement('div');
-    settingsDiv.insertAdjacentHTML('afterbegin' , Menu());
-    settingsDiv.classList.add('settings__block');
-    this.footerContainer.insertAdjacentElement('afterbegin' , settingsDiv);
+    const settingsBlock = document.createElement('div');
+    settingsBlock.classList.add('settings__block')
+    const settingsAll = document.createElement('div');
+    settingsAll.insertAdjacentHTML('afterbegin' , Menu());
+    settingsAll.classList.add('settings__all');
+    settingsBlock.insertAdjacentElement('afterbegin' , settingsAll)
+    this.footerContainer.insertAdjacentElement('afterbegin' , settingsBlock);
   }
   private createBtnSettings() {
     let openSettings : boolean = false;
+    const settingsAll = document.querySelector('.settings__block') as HTMLElement;
     const btnSettings = document.createElement('button');
     const image = document.createElement('img');
+    image.setAttribute('alt' , 'settings')
     image.src = settingsImg;
     btnSettings.classList.add('settings');
-    this.footerContainer.insertAdjacentElement('afterbegin' , btnSettings);
+    settingsAll.insertAdjacentElement('afterbegin' , btnSettings);
     btnSettings.insertAdjacentElement('afterbegin' , image);
     btnSettings.addEventListener('click' , ()=>{
-      const allSettings = document.querySelector('.settings__block') as HTMLElement;
+      const allSettings = document.querySelector('.settings__all') as HTMLElement;
       if(openSettings){
         allSettings.style.display = 'none';
         openSettings = false;

@@ -2,16 +2,9 @@
   position: relative;
   .settings{
     @extend %btn-input-reset;
-    width: 40px;
-    height: 40px;
-    cursor: pointer;
-    transition: 0.5s;
-    &:hover{
-      transition: 0.5s;
-      transform: rotate(30deg);
-    }
+    @extend %footer-btns;
   }
-  .settings__block{
+  .settings__all{
     width: 220px;
     height: 200px;
     background-color: $color;
@@ -53,6 +46,13 @@
     }
     &__subitem{
       cursor: pointer;
+    }
+  }
+  .wrapp{
+    @include flex(space-between);
+    .quotes-btn{
+      @extend %btn-input-reset;
+      @extend %footer-btns;
     }
   }
   

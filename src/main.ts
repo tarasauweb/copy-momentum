@@ -14,8 +14,8 @@ const weatherHumidity = document.querySelector('.weather__humidity') as HTMLElem
 const weatherdescription = document.querySelector('.weather__description') as HTMLElement;
 
 // Settings 
-const footerContainer = document.querySelector('.footer .container') as HTMLElement;
-const settings = new Settings(footerContainer)
+const footerWrapp = document.querySelector('.footer .container .wrapp') as HTMLElement;
+const settings = new Settings(footerWrapp)
 
 // Class for starting Weather 
 const weather = new Weather(weatherInput,weatherdescription,weatherImg,weatherTemp,weatherWind,weatherHumidity);
@@ -40,5 +40,5 @@ const slider = new Slider(btnPrev,btnNext,body,apiObjects,menuBackGround);
 
 // 
 
-const quotes = new Quotes();
+const quotes = new Quotes(footerWrapp);
 
