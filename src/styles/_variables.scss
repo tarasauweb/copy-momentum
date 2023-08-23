@@ -9,6 +9,16 @@ $indent-20px:20px;
   outline: none;
 }
 
+
+%settings-todo-blocks{
+  width: 220px;
+    height: 200px;
+    background-color: rgb(255, 255, 255);
+    position: absolute;
+    border-radius: 5px;
+    display: none;
+}
+
 %footer-btns{
   width: 40px;
   height: 40px;

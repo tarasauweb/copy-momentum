@@ -5,14 +5,9 @@
     @extend %footer-btns;
   }
   .settings__all{
-    width: 220px;
-    height: 200px;
-    background-color: $color;
-    position: absolute;
-    border-radius: 5px;
-    top:-210px;
-    left:30px;
-    display: none;
+    @extend %settings-todo-blocks;
+    bottom: 50px;
+    left: 20px;
   }
   .menu{
     color: black;
@@ -49,11 +44,14 @@
     }
   }
   .wrapp{
+    position: relative;
     @include flex(space-between);
+    height: 300px;
     .quotes-btn{
       @extend %btn-input-reset;
       @extend %footer-btns;
     }
+    
   }
   .quotes__block{
     @include flex(center,center,column);
@@ -62,6 +60,28 @@
   .quotes__subblock{
     text-align: center;
     order: -1;
+  }
+  .todo__btn,
+  .settings,
+  .quotes-btn{
+    position: absolute;
+    bottom: 0px;
+  }
+  .todo__btn{
+    right: 20px;
+    @extend %btn-input-reset;
+    @extend %footer-btns;
+    color: $color;
+    font-size: 20px;
+    &:hover{
+      transform: none;
+      text-shadow:1px 1px 2px rgb(177, 177, 176) ;
+    }
+  }
+  .todo__block{
+    @extend %settings-todo-blocks;
+    bottom: 50px;
+    right: 40px;
   }
 }
 .menu__items:hover .menu__nav{

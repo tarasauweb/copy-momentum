@@ -5,6 +5,7 @@ import Greeting from './components/greeting';
 import Slider from './components/slider';
 import Settings from './components/settings';
 import Quotes from './components/quotes';
+import Todo from './components/todo';
 // HTML Elements for weather block
 const weatherInput = document.querySelector('.weather__input') as HTMLInputElement;
 const weatherImg = document.querySelector('.weather__img') as HTMLImageElement;
@@ -41,4 +42,5 @@ const slider = new Slider(btnPrev,btnNext,body,apiObjects,menuBackGround);
 // 
 
 const quotes = new Quotes(footerWrapp);
+const todo = new Todo(footerWrapp)
 
