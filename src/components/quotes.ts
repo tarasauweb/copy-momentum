@@ -5,11 +5,11 @@ class Quotes {
     constructor (footerWrapp:HTMLElement) {
         this.footerWrapp = footerWrapp;
         this.arrayQuotes = [];
-        this.getQuotes ();
-        this.createQuotesBlock();
+        this.createQuotesBlock ();
+        this.setQuotes();
     }
 
-    private async getQuotes () {
+    private async getQuotes () : Promise <Array<{quote?:string , author?:string}>> {
         const data = await fetch('https://dummyjson.com/quotes');
         const res = await data.json();
         res.quotes.forEach((item : Array<{}>)=>{
@@ -21,10 +21,13 @@ class Quotes {
     private createBtnChangeQuotes () : HTMLElement {
         const btn = document.createElement('button');
         const img = document.createElement('img');
-        img.setAttribute('alt' , 'change quotes')
+        img.setAttribute('alt' , 'change quotes');
         btn.classList.add('quotes-btn');
         img.setAttribute('src' , imgPath);
         btn.insertAdjacentElement('afterbegin' , img);
+        btn.addEventListener('click' , ()=>{
+            this.setQuotes();
+        })
         return btn
         // this.footerWrapp.insertAdjacentElement('beforeend' , btn);
     }
@@ -42,9 +45,27 @@ class Quotes {
         quotesBlock.classList.add('quotes__block');
         quotesSubBlock.classList.add('quotes__subblock');
         quotesText.classList.add('quotes__text');
-        quotesAuthor.classList.add('quotes__block');
+        quotesAuthor.classList.add('quotes__author');
         this.footerWrapp.insertAdjacentElement('beforeend' , quotesBlock)
         return quotesBlock;
+    }
+
+    private setQuotes () {
+        const textQuotes = document.querySelector('.quotes__text') as HTMLElement;
+        const authorQuotes = document.querySelector('.quotes__author') as HTMLElement;
+        const data = this.getQuotes();
+        data.then((res)=>{
+            console.log(res)
+            const number = this.getRandomNumber(0,res.length - 1);
+            textQuotes.innerHTML = res[number].quote as string;
+            authorQuotes.innerHTML = res[number].author as string;
+        })
+    }
+
+    private getRandomNumber (min:number , max:number):number {
+        min = Math.ceil(min);
+        max = Math.floor(max);
+        return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 }
 

@@ -55,7 +55,14 @@
       @extend %footer-btns;
     }
   }
-  
+  .quotes__block{
+    @include flex(center,center,column);
+    width: 400px;
+  }
+  .quotes__subblock{
+    text-align: center;
+    order: -1;
+  }
 }
 .menu__items:hover .menu__nav{
   display: block !important;
