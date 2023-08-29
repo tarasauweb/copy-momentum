@@ -15,7 +15,9 @@ body{
     position: relative;
     background-blend-mode: multiply;
     transition: background-image 1s ease-in-out;
-    display: grid;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
 }
 a,ul,li,button{
     display: block;

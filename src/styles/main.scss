@@ -1,9 +1,9 @@
 main {
+  grid-area: main;
   .time{
     grid-area: time;
     font-size: 100px;
     text-align: $tac;
-    margin-top: 5%;
   }
   .day{
     text-align: $tac;

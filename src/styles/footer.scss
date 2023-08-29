@@ -1,5 +1,7 @@
 .footer{
   position: relative;
+  grid-area: footer;
+  padding-bottom: 20px;
   .settings{
     @extend %btn-input-reset;
     @extend %footer-btns;
@@ -46,7 +48,7 @@
   .wrapp{
     position: relative;
     @include flex(space-between);
-    height: 300px;
+    height: 180px;
     .quotes-btn{
       @extend %btn-input-reset;
       @extend %footer-btns;
