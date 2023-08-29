@@ -82,7 +82,66 @@
     @extend %settings-todo-blocks;
     bottom: 50px;
     right: 40px;
+    padding: 10px;
+    width: 330px;
+    .todo__input{
+      position: absolute;
+      bottom: 10px;
+      outline: none;
+      @extend %btn-input-reset;
+      border-bottom: 2px solid rgb(65, 58, 58);
+      font-weight: 700;
+      font-size: 1em;
+      padding-bottom: 7px;
+    }
+    .todo__task{
+      color: #000;
+      margin-left: 25px;
+      margin-top: 3px;
+      width: 100%;
+    }
+    .todo__item{
+      @include flex(flex-start);
+      margin-bottom: 5px;
+      word-wrap: break-word;
+      width: 180px;
+    }
+    .todo__complite{
+      position: relative;
+      border: none;
+      -webkit-appearance: none;
+      appearance: none;
+    }
+    .todo__complite::after{
+      top:-7px;
+      content: '';
+      position: absolute;
+      display: block;
+      width: 13px;
+      height: 13px;
+      background-color: transparent;
+      border: 2px solid black;
+      border-radius: 5px;
+      -webkit-border-radius: 5px;
+      -moz-border-radius: 5px;
+      -ms-border-radius: 5px;
+      -o-border-radius: 5px;
+      z-index: 2;
+      
+    }
+    .todo__complite.tool::after{
+      content: '✔';
+      font-size: 20px;
+      color: chocolate;
+      font-weight: 700;
+      @include flex();
+    }
+    
   }
+  .task__through{
+    text-decoration: line-through;
+  }
+  
 }
 .menu__items:hover .menu__nav{
   display: block !important;
