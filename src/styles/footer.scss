@@ -100,13 +100,12 @@
       color: #000;
       margin-left: 25px;
       margin-top: 3px;
-      width: 100%;
+      width: 220px;
     }
     .todo__item{
       @include flex(flex-start);
       margin-bottom: 5px;
       word-wrap: break-word;
-      width: 180px;
     }
     .todo__complite{
       position: relative;
@@ -143,7 +142,21 @@
   .task__through{
     text-decoration: line-through;
   }
-  
+  .task__delete,
+  .task__edit{
+    opacity: 1;
+    @extend %btn-input-reset;
+    cursor: pointer;
+    padding: 5px;
+    font-weight: bold;
+    margin-top: 5px;
+    color: rgb(65, 58, 58);
+    transition: 0.5s;
+    &:hover{
+      color: #000;
+      transition: 0.5s;
+    }
+  }
 }
 .menu__items:hover .menu__nav{
   display: block !important;

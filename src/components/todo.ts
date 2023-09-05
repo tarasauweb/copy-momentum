@@ -1,11 +1,11 @@
 class Todo {
     footerWrapp:HTMLElement;
-    arrTasks : string[];
+    arrTasks : Array<HTMLElement>;
     constructor(footerWrapp:HTMLElement) {
+        this.arrTasks = [];
         this.footerWrapp = footerWrapp;
         this.createTodo();
         this.listenerTodo();
-        this.arrTasks = [];
     }
 
     private createTodo () {
@@ -47,22 +47,48 @@ class Todo {
             
         })
         inputTask.addEventListener('change' , ()=>{
-            this.arrTasks.push(inputTask.value);
-            const task = this.createTask (this.arrTasks[this.arrTasks.length - 1]);
-            todoTasks.insertAdjacentElement('beforeend' , task);
+            const task = this.createTask (inputTask.value);
+            this.arrTasks.unshift(task);
+            this.renderTasks(todoTasks,this.arrTasks);
             inputTask.value = '';
+        })
+
+        todoBlock.addEventListener('click' , (e)=>{
+            const elem = e.target as HTMLElement;
+            if(elem.textContent === 'del'){
+                const parentElem = elem.parentNode as HTMLElement;
+                const indexElem = this.arrTasks.indexOf(parentElem);
+                indexElem === 0 ? this.arrTasks.splice(indexElem,1) : this.arrTasks.splice(indexElem,indexElem)
+                this.renderTasks(todoTasks,this.arrTasks);
+            }
         })
     }
 
+    private renderTasks (todoTasks:HTMLElement, array:Array<HTMLElement>):HTMLElement {
+        todoTasks.innerHTML = '';
+        for(let i = 0 ; i < array.length ; i++) {
+            todoTasks.insertAdjacentElement('afterbegin' , array[i])
+        }
+        return todoTasks;
+    }
+
     private createTask (data:string) : HTMLElement {
+        const btnDeleteTask = document.createElement('button');
+        const btnEditTask = document.createElement('button');
         const li = document.createElement('li');
         const task = document.createElement('span');
         const inputCompliteTask = document.createElement('input');
+        btnDeleteTask.classList.add('task__delete');
+        btnEditTask.classList.add('task__edit');
+        btnDeleteTask.textContent = 'del';
+        btnEditTask.textContent = 'edit';
         inputCompliteTask.setAttribute('type' , 'checkbox');
         inputCompliteTask.classList.add('todo__complite');
         task.classList.add('todo__task');
         li.classList.add('todo__item');
         li.insertAdjacentElement('beforeend' , task);
+        li.insertAdjacentElement('beforeend' , btnDeleteTask);
+        li.insertAdjacentElement('beforeend' , btnEditTask);
         li.insertAdjacentElement('afterbegin' , inputCompliteTask);
         task.textContent = data;
         inputCompliteTask.addEventListener('click' , ()=>{
