@@ -48,11 +48,29 @@ class Slider {
     })
   }
   private setBackground (apiSlider:TypeApiSlider) {
-    apiSlider === 'flickr' ? this.listenerSlider(this.getFlickrApi()) : false ? apiSlider === 'unsplash' : this.listenerSlider(this.getUnspleshApi());
+    this.clearArrayImage(this.arrayImage);
+    apiSlider === 'flickr' ? this.listenerSlider(this.getFlickrApi()) : apiSlider === 'unsplash' ? this.listenerSlider(this.getUnspleshApi()) : false ;
+  }
+  private listenerSlider (data : Array<string>) {
+    let numberSlide = 0;
+    this.btnPrev.addEventListener('click' , ()=>{
+      --numberSlide;
+      if(numberSlide <= 0) {
+        numberSlide = data.length-1;
+      }
+      this.body.style.background = this.returnUrlSlider(data[numberSlide]);
+    })
+
+    this.btnNext.addEventListener('click' , ()=>{
+      ++numberSlide;
+      if(numberSlide >= data.length) {
+        numberSlide = 0;
+      }
+      this.body.style.background = this.returnUrlSlider(data[numberSlide]);
+    })
     
   }
-  private async getFlickrApi () : Promise<Array<string>> {
-    this.clearArrayImage(this.arrayImage);
+  private getFlickrApi () : Array<string> {
     this.timeOfDay = this.getTimeOfDay();
     const getUrl = (this.api as any).flickr[`${this.timeOfDay}`];
     async function flickr () {
@@ -65,42 +83,32 @@ class Slider {
         if(element.url_h){
             this.arrayImage.push(element.url_h);
         }
-    });
-    return this.arrayImage
-  }
-  private async listenerSlider (data : Promise<Array<string>>) {
-    data.then((res)=>{
-      this.btnPrev.addEventListener('click' , ()=>{
-        --this.numberSlide;
-        if(this.numberSlide <= 0) {
-          this.numberSlide = res.length-1;
-        }
-        this.body.style.background = this.returnUrlSlider(res[this.numberSlide]);
-      })
-      this.btnNext.addEventListener('click' , ()=>{
-        ++this.numberSlide;
-        if(this.numberSlide >= res.length) {
-          this.numberSlide = 0;
-        }
-        this.body.style.background = this.returnUrlSlider(res[this.numberSlide]);
-      })
-      this.body.style.background = this.returnUrlSlider(res[this.numberSlide]);
+      });
+      this.body.style.background = this.returnUrlSlider(this.arrayImage[0]);
+      return this.arrayImage;
     })
     return this.arrayImage;
   }
-  private async getUnspleshApi () : Promise<Array<string>> {
-    this.clearArrayImage(this.arrayImage);
+  private getUnspleshApi () : Array<string> {
     this.timeOfDay = this.getTimeOfDay();
-    const data = await fetch((this.api as any).unsplash[`${this.timeOfDay}`]);
-    const response = await data.json();
-    response.forEach((element : any) => {
-      this.arrayImage.push(element.urls.regular)
-    });
-    return this.arrayImage
+    const getUrl = (this.api as any).unsplash[`${this.timeOfDay}`];
+    async function unsplash () {
+      const data = await fetch(getUrl);
+      const response = await data.json();
+      return response; 
+    }
+    unsplash().then(response=>{
+      response.forEach((element : any) => {
+        this.arrayImage.push(element.urls.regular)
+      });
+      this.body.style.background = this.returnUrlSlider(this.arrayImage[0]);
+      return this.arrayImage;
+    })
+    return this.arrayImage;
   }
   private clearArrayImage (array:Array<string>) : Array<string> {
     if(array.length !== 0) {
-      array.splice(0,array.length-1)
+      array.splice(0,array.length);
     }
     return array;
   }
@@ -110,3 +118,4 @@ class Slider {
 }
 
 export default Slider;
+
