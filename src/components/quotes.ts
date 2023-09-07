@@ -29,7 +29,6 @@ class Quotes {
             this.setQuotes();
         })
         return btn
-        // this.footerWrapp.insertAdjacentElement('beforeend' , btn);
     }
 
     private createQuotesBlock () : HTMLElement {
