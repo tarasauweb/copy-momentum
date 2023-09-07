@@ -29,7 +29,6 @@ class Quotes {
             this.setQuotes();
         })
         return btn
-        // this.footerWrapp.insertAdjacentElement('beforeend' , btn);
     }
 
     private createQuotesBlock () : HTMLElement {
@@ -55,7 +54,6 @@ class Quotes {
         const authorQuotes = document.querySelector('.quotes__author') as HTMLElement;
         const data = this.getQuotes();
         data.then((res)=>{
-            console.log(res)
             const number = this.getRandomNumber(0,res.length - 1);
             textQuotes.innerHTML = res[number].quote as string;
             authorQuotes.innerHTML = res[number].author as string;

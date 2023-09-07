@@ -50,11 +50,13 @@ class Slider {
     })
   }
   private setBackground (apiSlider:TypeApiSlider) {
-    apiSlider === 'flickr' ? this.listenerSlider(this.getFlickrApi()) : false ? apiSlider === 'unsplash' : this.listenerSlider(this.getUnspleshApi());
+    this.numberSlide = 0;
+    apiSlider === 'flickr' ? this.listenerSlider(this.getFlickrApi()) : apiSlider === 'unsplash' ? this.listenerSlider(this.getUnspleshApi()) : false;
     
   }
   private async getFlickrApi () : Promise<Array<string>> {
     this.clearArrayImage(this.arrayImage);
+    console.log(this.arrayImage)
     this.timeOfDay = this.getTimeOfDay();
     const getUrl = (this.api as any).flickr[`${this.timeOfDay}`];
     const data = await fetch(getUrl);
@@ -64,7 +66,8 @@ class Slider {
             this.arrayImage.push(element.url_h);
         }
     });
-    return this.arrayImage
+    this.body.style.background = this.returnUrlSlider(this.arrayImage[this.numberSlide]);
+    return this.arrayImage;
   }
   private async listenerSlider (data : Promise<Array<string>>) {
     data.then((res)=>{
@@ -73,34 +76,36 @@ class Slider {
         if(this.numberSlide <= 0) {
           this.numberSlide = res.length-1;
         }
-        this.body.style.background = this.returnUrlSlider(res[this.numberSlide]);
+        return this.body.style.background = this.returnUrlSlider(res[this.numberSlide]);
       })
       this.btnNext.addEventListener('click' , ()=>{
         ++this.numberSlide;
         if(this.numberSlide >= res.length) {
           this.numberSlide = 0;
         }
-        this.body.style.background = this.returnUrlSlider(res[this.numberSlide]);
+        return this.body.style.background = this.returnUrlSlider(res[this.numberSlide]);
       })
-      this.body.style.background = this.returnUrlSlider(res[this.numberSlide]);
+      
     })
     
   }
   private async getUnspleshApi () : Promise<Array<string>> {
     this.clearArrayImage(this.arrayImage);
+    console.log(this.arrayImage)
     this.timeOfDay = this.getTimeOfDay();
     const data = await fetch((this.api as any).unsplash[`${this.timeOfDay}`]);
     const response = await data.json();
     response.forEach((element : any) => {
       this.arrayImage.push(element.urls.regular)
     });
+     this.body.style.background = this.returnUrlSlider(this.arrayImage[this.numberSlide]);
     return this.arrayImage
   }
   private clearArrayImage (array:Array<string>) : Array<string> {
     if(array.length !== 0) {
-      array.splice(0,array.length-1)
+      array.splice(0,array.length)
     }
-    return array
+    return array;
   }
   private returnUrlSlider (linkImg : string) : string {
     return `url(${linkImg}) no-repeat center center /cover`;
