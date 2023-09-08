@@ -44,7 +44,6 @@ class Todo {
                 todoOpen = true;
                 todoBlock.style.display = 'block';
             }
-            
         })
         inputTask.addEventListener('change' , ()=>{
             const task = this.createTask (inputTask.value);
@@ -52,7 +51,6 @@ class Todo {
             this.renderTasks(todoTasks,this.arrTasks);
             inputTask.value = '';
         })
-
         todoBlock.addEventListener('click' , (e)=>{
             const elem = e.target as HTMLElement;
             if(elem.textContent === 'del'){
@@ -60,6 +58,30 @@ class Todo {
                 const indexElem = this.arrTasks.indexOf(parentElem);
                 indexElem === 0 ? this.arrTasks.splice(indexElem,1) : this.arrTasks.splice(indexElem,indexElem)
                 this.renderTasks(todoTasks,this.arrTasks);
+            }
+            if(elem.textContent === 'edit') {
+                const inputEdit = document.createElement('input') as HTMLInputElement;
+                const parentElem = (elem.parentNode as HTMLElement);
+                const childElemForChangeTask = parentElem.childNodes[1] as HTMLElement;
+                const childElemInput = parentElem.childNodes[0] as HTMLElement;
+                const taskTextBeforeChange = childElemForChangeTask.textContent as string;
+                childElemForChangeTask.style.display = 'none';
+                inputEdit.setAttribute('type' , 'text');
+                inputEdit.setAttribute('value' , taskTextBeforeChange);
+                childElemInput.insertAdjacentElement('afterend' , inputEdit);
+                inputEdit.classList.add('todo__edit_input');
+                inputEdit.focus();
+                inputEdit.selectionStart = inputEdit.value.length
+                inputEdit.addEventListener('change' , ()=>{
+                    this.arrTasks.find(elem=>{
+                        if(elem.childNodes[2].textContent === taskTextBeforeChange){
+                            elem.childNodes[2].textContent = inputEdit.value
+                        }
+                    })
+                    childElemForChangeTask.style.display = 'block';
+                    this.renderTasks(todoTasks,this.arrTasks);
+                    inputEdit.remove();
+                })
             }
         })
     }
