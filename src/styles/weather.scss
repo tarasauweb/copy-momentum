@@ -1,4 +1,5 @@
 .weather{
+  transition: $transition;
   &__input{
     @extend %btn-input-reset;
     border-bottom: 2px solid  $color;

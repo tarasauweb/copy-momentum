@@ -41,7 +41,7 @@ class Quotes {
         quotesBlock.insertAdjacentElement('afterbegin' , quotesBtn);
         quotesSubBlock.insertAdjacentElement('afterbegin' , quotesText);
         quotesSubBlock.insertAdjacentElement('beforeend' , quotesAuthor);
-        quotesBlock.classList.add('quotes__block');
+        quotesBlock.classList.add('quotes');
         quotesSubBlock.classList.add('quotes__subblock');
         quotesText.classList.add('quotes__text');
         quotesAuthor.classList.add('quotes__author');
@@ -64,6 +64,10 @@ class Quotes {
         min = Math.ceil(min);
         max = Math.floor(max);
         return Math.floor(Math.random() * (max - min + 1)) + min;
+    }
+    returnWidget () {
+        const quotesWidget = document.querySelector('.quotes');
+        return quotesWidget;
     }
 }
 

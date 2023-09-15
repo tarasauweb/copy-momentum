@@ -28,9 +28,12 @@ function Menu () : string {
         </ul>
         <ul class="menu__nav">
           <li class="menu__subitems">
-            <ul class="menu__submenu">
+            <ul class="menu__submenu menu__submenu_close">
               <li class="menu__subitem">
                 player
+              </li>
+              <li class="menu__subitem">
+                weather
               </li>
               <li class="menu__subitem">
                 slider
@@ -43,6 +46,12 @@ function Menu () : string {
               </li>
               <li class="menu__subitem">
                 greeting
+              </li>
+              <li class="menu__subitem">
+                quotes
+              </li>
+              <li class="menu__subitem">
+                todo
               </li>
             </ul>
           </li>
@@ -57,7 +66,7 @@ function Menu () : string {
        
         <ul class="menu__nav">
           <li class="menu__subitems">
-            <ul class="menu__submenu">
+            <ul class="menu__submenu menu__submenu_lang">
               <li class="menu__subitem">
                 Eng
               </li>

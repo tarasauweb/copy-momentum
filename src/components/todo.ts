@@ -125,6 +125,11 @@ class Todo {
         })
         return li
     }
+    returnWidget () {
+        const todo = document.querySelector('.todo');
+        return todo;
+    }
+
 }
 
 export default Todo

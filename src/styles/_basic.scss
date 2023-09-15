@@ -34,3 +34,11 @@ img{
     margin: 0 auto;
     padding: 0 15px;
 }
+.close-widget{
+    transition: 0.5s;
+    opacity: 0;
+    &:hover{
+        transition: 0.5s;
+        opacity: 1;
+    }
+}

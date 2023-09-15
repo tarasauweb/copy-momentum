@@ -37,7 +37,10 @@ class Settings {
       }
     })
   }
-  
+  returnWidget () {
+    const mwnuSettings = document.querySelector('.settings__block');
+    return mwnuSettings;
+  }
 }
 
 export default Settings

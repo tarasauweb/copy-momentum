@@ -48,6 +48,10 @@ class Weather {
       return err
     }
   }
+  returnWidget () {
+    const weather = document.querySelector('.weather');
+    return weather;
+  }
 }
 
 export default Weather

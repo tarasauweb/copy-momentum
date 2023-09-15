@@ -4,23 +4,26 @@ main {
     grid-area: time;
     font-size: 100px;
     text-align: $tac;
+    transition: $transition;
   }
-  .day{
+  .date{
     text-align: $tac;
     font-size: 22px;
     grid-area: day;
+    transition: $transition;
   }
-  .greeting {
+  .greeting__subblock {
     text-align: right;
     font-size: 35px;
     width: 270px;
 
   }
-  .subblock{
+  .greeting{
     grid-area: greeting;
     width: 100%;
     margin-top: 10px;
     @include flex();
+    transition: $transition;
     input{
       margin-left: 10px;
       @extend %btn-input-reset;
@@ -49,22 +52,22 @@ main {
   transform: translate(0,-50%);
   width: $indent-20px;
   height: $indent-20px;
-  @extend %btn-input-reset;
+  @extend%btn-input-reset;
   cursor: pointer;
-  transition: 0.5s;
-  
- }
+  transition:$transition;
+
+  }
  &__prev{
   left:$indent-20px;
   &:hover{
-    transition: 0.5s;
+    transition: $transition;
     transform: translate(-20%,-50%);
   }
  }
  &__next{
   right:$indent-20px;
   &:hover{
-    transition: 0.5s;
+    transition: $transition;
     transform: translate(20%,-50%);
   }
  }

@@ -2,6 +2,7 @@ $bk-ground:rgb(41, 36, 36);
 $color:rgb(255, 255, 255);
 $tac:center;
 $indent-20px:20px;
+$transition:0.5s;
 
 %btn-input-reset{
   background-color: transparent;
@@ -23,11 +24,11 @@ $indent-20px:20px;
   width: 40px;
   height: 40px;
   cursor: pointer;
-  transition: 0.5s;
+  transition:$transition;
   &:hover{
-    transition: 0.5s;
+    transition: $transition;
     transform: rotate(30deg);
-  }
+}
 }
 @mixin flex($j-content:center,$a-items:center,$f-direction:row){
   display: flex;
