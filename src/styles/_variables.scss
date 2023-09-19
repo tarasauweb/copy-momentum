@@ -4,6 +4,11 @@ $tac:center;
 $indent-20px:20px;
 $transition:0.5s;
 
+%settings-todo{
+  box-shadow: 0 0 1rem 0 rgba(41, 39, 39, 0.2);
+  background: inherit;
+}
+
 %btn-input-reset{
   background-color: transparent;
   border: none;
@@ -14,7 +19,7 @@ $transition:0.5s;
 %settings-todo-blocks{
   width: 220px;
   height: 200px;
-  background-color: rgb(255, 255, 255);
+  background-color: rgb(39 35 35 / 56%);
   position: absolute;
   border-radius: 5px;
   display: none;

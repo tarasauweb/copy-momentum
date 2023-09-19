@@ -1,5 +1,8 @@
 .weather{
+  @extend %settings-todo;
+  border-radius: 10px;
   transition: $transition;
+  padding: 10px;
   &__input{
     @extend %btn-input-reset;
     border-bottom: 2px solid  $color;

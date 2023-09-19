@@ -8,11 +8,13 @@
   }
   .settings__all{
     @extend %settings-todo-blocks;
+    @extend %settings-todo;
     bottom: 50px;
     left: 20px;
+    border-radius: 10px;
   }
   .menu{
-    color: black;
+    color: rgb(255, 255, 255);
     padding: 10px;
     position: relative;
     &::after{
@@ -20,7 +22,7 @@
       display: block;
       width: 2px;
       height: 190px;
-      background-color: black;
+      background-color: rgb(22, 22, 22);
       position: absolute;
       top:5px;
       left:50%;
@@ -86,6 +88,7 @@
   }
   .todo__block{
     @extend %settings-todo-blocks;
+    border-radius: 10px;
     bottom: 50px;
     right: 40px;
     padding: 10px;
@@ -97,14 +100,18 @@
       bottom: 10px;
       outline: none;
       @extend %btn-input-reset;
-      border-bottom: 2px solid rgb(65, 58, 58);
+      border-bottom: 2px solid rgb(22, 22, 22);
       font-weight: 700;
       font-size: 1em;
       padding-bottom: 7px;
+      color: #ffffff;
+    }
+    .todo__input::-webkit-input-placeholder { 
+      color: rgb(221, 218, 218); 
     }
     .todo__edit_input,
     .todo__task{
-      color: #000;
+      color: #ffffff;
       margin-left: 25px;
       margin-top: 3px;
       width: 220px;
@@ -112,10 +119,11 @@
     .todo__edit_input{
       outline: none;
       border: none;
-      border-bottom: 2px solid rgb(65, 58, 58);
+      border-bottom: 2px solid rgb(22, 22, 22);
       font-weight: 700;
       font-size: 1em;
       padding-bottom: 7px;
+      background: transparent;
     }
     .todo__item{
       @include flex(flex-start);
@@ -139,7 +147,7 @@
       width: 13px;
       height: 13px;
       background-color: transparent;
-      border: 2px solid black;
+      border: 2px solid rgb(165, 160, 160);
       border-radius: 5px;
       -webkit-border-radius: 5px;
       -moz-border-radius: 5px;
@@ -151,7 +159,7 @@
     .todo__complite.tool::after{
       content: '✔';
       font-size: 20px;
-      color: chocolate;
+      color: rgb(255, 255, 255);
       font-weight: 700;
       @include flex();
     }
@@ -168,10 +176,10 @@
     padding: 5px;
     font-weight: bold;
     margin-top: 5px;
-    color: rgb(65, 58, 58);
+    color: rgb(165, 160, 160);
     transition:$transition;
     &:hover{
-      color: #000;
+      color: #ffffff;
       transition: $transition;
     }
   }
