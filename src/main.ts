@@ -7,6 +7,7 @@ import Settings from './components/settings';
 import Quotes from './components/quotes';
 import Todo from './components/todo';
 import CloseWidget from './components/close_widget';
+import Player from './components/player';
 // HTML Elements for weather block
 const weatherInput = document.querySelector('.weather__input') as HTMLInputElement;
 const weatherImg = document.querySelector('.weather__img') as HTMLImageElement;
@@ -48,6 +49,12 @@ const todo = new Todo(footerWrapp);
 
 // 
 
+const widgetMusicPlayer = document.querySelector('.player') as HTMLElement ;
+const musicPlayer = new Player (widgetMusicPlayer)
+
+
+// 
+
 const widgetSettigs = settings.returnWidget() as HTMLElement;
 const widgetWeather = weather.returnWidget() as HTMLElement;
 const widgetTodo = todo.returnWidget() as HTMLElement;
@@ -55,6 +62,6 @@ const widgetQuotes = quotes.returnWidget() as HTMLElement;
 const widgetGreeting = document.querySelector('.greeting') as HTMLElement;
 const menuCLoseWidget = document.querySelector('.menu__submenu_close') as HTMLElement;
 const widgetSlider = document.querySelector('.slider') as HTMLElement;
-const widgets: HTMLElement[] = [widgetWeather,widgetTodo,widgetSettigs,time,day,widgetGreeting,widgetQuotes,widgetSlider];
+const widgets: HTMLElement[] = [widgetMusicPlayer,widgetWeather,widgetTodo,widgetSettigs,time,day,widgetGreeting,widgetQuotes,widgetSlider];
 const closeWidgets = new CloseWidget (widgets,menuCLoseWidget)
 

@@ -1,6 +1,28 @@
 function Menu () : string {
   const menu:string =  `
     <ul class="menu">
+    <li class="menu__items">
+        <ul class="menu__subscribe">
+          <li class="menu__span">
+            Playlist
+          </li>
+        </ul>
+        <ul class="menu__nav">
+          <li class="menu__subitems">
+            <ul class="menu__submenu menu__submenu_playlist">
+              <li class="menu__subitem">
+                Mix
+              </li>
+              <li class="menu__subitem">
+                Phonk
+              </li>
+              <li class="menu__subitem">
+                Deep
+              </li>
+            </ul>
+          </li>
+        </ul>
+      </li>
       <li class="menu__items">
         <ul class="menu__subscribe">
           <li class="menu__span">
