@@ -56,7 +56,6 @@ class Player {
             arrSongName.push(momentumPlayList[key as keyof typeof momentumPlayList].name)
             arrSongLink.push(momentumPlayList[key as keyof typeof momentumPlayList].link)
         }
-        console.log(arrSongLink)
 
         arrSongName.forEach((item:string)=>{
             const li = document.createElement('li');
@@ -66,7 +65,6 @@ class Player {
             playlist.insertAdjacentElement('beforeend' , li)
         })
 
-        console.log(arrHTMLElems)
         track.src = arrSongLink[numberSong];
         this.track = track;
         playBtn.addEventListener('click' , ()=>{
