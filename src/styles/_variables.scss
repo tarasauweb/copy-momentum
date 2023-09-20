@@ -33,7 +33,7 @@ $transition:0.5s;
   &:hover{
     transition: $transition;
     transform: rotate(30deg);
-}
+  }
 }
 @mixin flex($j-content:center,$a-items:center,$f-direction:row){
   display: flex;

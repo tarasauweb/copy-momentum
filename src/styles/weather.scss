@@ -1,4 +1,5 @@
 .weather{
+  height: 150px;
   @extend %settings-todo;
   border-radius: 10px;
   transition: $transition;

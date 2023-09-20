@@ -19,6 +19,9 @@ function Menu () : string {
               <li class="menu__subitem">
                 Deep
               </li>
+              <li class="menu__subitem">
+                Momentum
+              </li>
             </ul>
           </li>
         </ul>
