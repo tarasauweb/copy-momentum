@@ -20,6 +20,8 @@ enum playList {
 }
 
 interface IMomentumPlayList {
+    'Test1' : ITrack,
+    'Test' : ITrack,
     'Linkin Park' : ITrack ,
    'Mr.Kitty' : ITrack , 
     'Skeler' : ITrack,
@@ -30,6 +32,14 @@ interface ITrack {
     link : string,
 }
 export const momentumPlayList : IMomentumPlayList = {
+    'Test1' : {
+        name : 'Test1 - tack1',
+        link: '../music/korotkaya - test.mp3',
+    },
+    'Test' : {
+        name : 'Test - tack',
+        link: '../music/otkryitie - test.mp3',
+    },
     'Linkin Park' : {
         name : 'Linkin Park - Lost',
         link: '../music/Linkin Park – Lost.mp3',

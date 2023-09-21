@@ -41,7 +41,7 @@ class Player {
     momentumPlay () {
         const playBtn = document.querySelector('.player__btn_play') as HTMLElement;
         const prevSongBtn = document.querySelector('.player__btn_prev') as HTMLElement;
-        const NextSongBtn = document.querySelector('.player__btn_next') as HTMLElement;
+        const nextSongBtn = document.querySelector('.player__btn_next') as HTMLElement;
         const playlist = document.querySelector('.player__list') as HTMLElement;
         const playImg = document.querySelector('.player__img_play') as HTMLElement;
         const pauseImg = document.querySelector('.player__img_pause') as HTMLElement;
@@ -80,6 +80,41 @@ class Player {
             arrHTMLElems[numberSong].classList.add('player__track_active');
             playImg.classList.toggle('d-none');
             pauseImg.classList.toggle('d-none');
+            
+        })
+
+        track.addEventListener('ended' , ()=>{
+            nextSongPlay();
+        })
+
+        const nextSongPlay = () => {
+            playImg.classList.add('d-none');
+            pauseImg.classList.remove('d-none');
+            track.pause();
+            songPlay = true;
+            track.currentTime = 0.0;
+            
+            numberSong++;
+            if(numberSong>=arrSongLink.length){
+                numberSong = 0;
+            }
+            track = new Audio (arrSongLink[numberSong]);
+            track.addEventListener('loadeddata' , ()=>{
+                track.play();
+            })
+            arrHTMLElems.forEach(item=>{
+                item.classList.remove('player__track_active');
+            })
+            
+            arrHTMLElems[numberSong].classList.add('player__track_active');
+            track.addEventListener('ended' , ()=>{
+                nextSongPlay();
+
+            })
+            
+        }
+        nextSongBtn.addEventListener('click' , ()=>{
+            nextSongPlay();
         })
     }
     private listenerMenu () {
