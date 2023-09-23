@@ -66,8 +66,8 @@ class Player {
         })
 
         track.src = arrSongLink[numberSong];
-        this.track = track;
         playBtn.addEventListener('click' , ()=>{
+            this.track = track;
             if(songPlay){
                 track.pause();
                 arrHTMLElems[numberSong].classList.add('player__track_active');
@@ -111,11 +111,13 @@ class Player {
                 nextSongPlay();
 
             })
-            
+            this.track = track;
         }
         nextSongBtn.addEventListener('click' , ()=>{
             nextSongPlay();
         })
+
+        
     }
     private listenerMenu () {
         const itemMenuPlaylist = document.querySelector('.menu__submenu_playlist') as HTMLElement;
