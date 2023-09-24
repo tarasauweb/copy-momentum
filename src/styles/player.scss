@@ -1,4 +1,26 @@
 .player{
+  &__wave{
+    height: 3px;
+    border-radius: 5px;
+    width: 100%;
+    background-color: #fff;
+    margin-bottom: 10px;
+    cursor: pointer;
+  }
+  &__times{
+    @include flex(space-between);
+  }
+  &__wave{
+    position: relative;
+  }
+  &__wave-now{
+    position: absolute;
+    top:0;
+    left:0;
+    height: 3px;
+    background-color: crimson;
+    width: 0px;
+  }
   &__controls{
     @include flex(flex-start,center)
   }
@@ -30,6 +52,10 @@
     color: rgba(68, 100, 68, 0.548);
   }
   @media screen and (max-width:1396px){
+    .iframe{
+      position: absolute;
+      width: 180px;
+    }
     iframe{
       position: absolute;
       width: 300px;

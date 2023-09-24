@@ -2,7 +2,23 @@ enum playList {
     'Mix' = '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1E39HnSOC4Gw4A?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>',
     'Phonk' = '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EIgYfmEYKmd2h?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>',
     'Deep' = '<iframe width="100%" height="352" src="https://www.youtube.com/embed/0tTO-JiGKw0?si=WOL1TAWz_yQrNgY5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
-    'Momentum' = `<div class="player__controls">
+    'Momentum' = `<div class="iframe">
+                    <div class="player__subblock">
+                        <div class="player__times">
+                            <div class="player__time-full">
+                                00:00
+                            </div>
+                            <div class="player__time-now">
+                                00:00
+                            </div>
+                        </div>
+                        <div class="player__wave">
+                            <div class="player__wave-now">
+                            
+                            </div>
+                        </div>
+                    </div>
+                    <div class="player__controls">
                     <button class="player__btn player__btn_prev">
                         <img src="./img/play-prev.svg" alt="song prev" class="player__img">
                     </button>
@@ -16,7 +32,8 @@ enum playList {
                 </div>
                 <ul class="player__list">
                     
-                </ul>`
+                </ul>
+            </div>`
 }
 
 interface IMomentumPlayList {

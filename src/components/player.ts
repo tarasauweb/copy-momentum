@@ -45,6 +45,12 @@ class Player {
         const playlist = document.querySelector('.player__list') as HTMLElement;
         const playImg = document.querySelector('.player__img_play') as HTMLElement;
         const pauseImg = document.querySelector('.player__img_pause') as HTMLElement;
+        const timeSongNow = document.querySelector('.player__time-now') as HTMLElement;
+        const timeSongFull = document.querySelector('.player__time-full') as HTMLElement;
+        const playerWave = document.querySelector('.player__wave') as HTMLElement;
+        const playerWaveNow = document.querySelector('.player__wave-now') as HTMLElement;
+        const playerWaveWidth = playerWave.clientWidth;
+        let timer : any = null ;
         const arrSongName : string[] = [];
         const arrSongLink : string[] = [];
         const arrHTMLElems : Array<HTMLElement> = [];
@@ -73,6 +79,7 @@ class Player {
                 arrHTMLElems[numberSong].classList.add('player__track_active');
                 playImg.classList.toggle('d-none');
                 pauseImg.classList.toggle('d-none');
+                clearInterval(timer);
                 return songPlay = false;
             }
             track.play();
@@ -80,6 +87,8 @@ class Player {
             arrHTMLElems[numberSong].classList.add('player__track_active');
             playImg.classList.toggle('d-none');
             pauseImg.classList.toggle('d-none');
+
+            setTimerSong(track)
             
         })
 
@@ -107,17 +116,66 @@ class Player {
             })
             
             arrHTMLElems[numberSong].classList.add('player__track_active');
+            track.addEventListener('loadedmetadata', ()=>{
+                setTimerSong(track)
+            })
             track.addEventListener('ended' , ()=>{
                 nextSongPlay();
 
             })
+            
             this.track = track;
         }
         nextSongBtn.addEventListener('click' , ()=>{
             nextSongPlay();
         })
 
-        
+        function setTimerSong (track:HTMLAudioElement) {
+            clearInterval(timer)
+            const time = track.duration;
+            const timeMinuts = Math.floor(time / 60);
+            const timeSeconds = Math.floor(time - (timeMinuts*60));
+            
+            let fullTime = '' ; 
+            timeMinuts < 10 ? fullTime = `0${timeMinuts}:` : fullTime = `${timeMinuts}:`;
+            timeSeconds < 10 ? fullTime += `0${timeSeconds}` : fullTime += `${timeSeconds}`;
+            timeSongFull.textContent = fullTime;
+
+            // 
+
+            track.addEventListener('timeupdate' , ()=>{
+                let length = playerWaveWidth / track.duration * track.currentTime ;
+                playerWaveNow.style.width = length + 'px'
+            })
+
+            console.log(length)
+
+            let minutsNow = 0;
+            let secondsNow = 0;
+            let timeNow = ''
+
+            timer = setInterval(()=>{
+                const secondsAfterPlayBackStarts = Math.floor(track.currentTime);
+                minutsNow = Math.floor((time - (time - secondsAfterPlayBackStarts)) / 60);
+                secondsNow = Math.floor((time - (time - secondsAfterPlayBackStarts))%60)
+                
+                minutsNow < 10 ? timeNow = `0${minutsNow}:` : timeNow = `${minutsNow}:`;
+                secondsNow < 10 ? timeNow += `0${secondsNow}` : timeNow += `${secondsNow}`;
+                timeSongNow.textContent = timeNow
+                
+                
+                
+                if(track.currentTime === track.duration) {
+                    clearInterval(timer)
+                    minutsNow = 0;
+                    secondsNow = 0;
+                    timeNow = '00:00';
+                    timeSongFull.textContent = '00:00';
+                    playerWaveNow.style.width = 0 + `px`;
+                }
+            },1000)
+            
+        }
     }
     private listenerMenu () {
         const itemMenuPlaylist = document.querySelector('.menu__submenu_playlist') as HTMLElement;
