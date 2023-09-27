@@ -3,11 +3,14 @@
     height: 3px;
     border-radius: 5px;
     width: 100%;
+    max-width: 180px;
     background-color: #fff;
     margin-bottom: 10px;
     cursor: pointer;
   }
   &__times{
+    width: 100%;
+    max-width: 180px;
     @include flex(space-between);
   }
   &__wave{
@@ -18,17 +21,54 @@
     top:0;
     left:0;
     height: 3px;
-    background-color: crimson;
+    background-color: rgba(39, 35, 35, 0.56);
     width: 0px;
   }
+  &__btn-volume{
+    position: relative;
+    cursor: pointer;
+    span{
+      position: absolute;
+      font-size: 30px;
+      color: rgb(252, 0, 0);
+      font-weight: bold;
+      top:-10px;
+      opacity: 0;
+    }
+  }
+  &__other{
+    @include flex(flex-start,center);
+  }
+  &__volume{
+    width: 100px;
+    height: 4px;
+    background-color: #fff;
+    border-radius: 10px;
+    margin-top: -5px;
+    margin-left: 5px;
+    position: relative;
+    cursor: pointer;
+    &-value{
+      width: 80px;
+      height: 4px;
+      position: absolute;
+      background-color: rgb(255, 0, 0);
+      border-radius: 10px;    ;
+      -webkit-border-radius: 10px    ;
+      -moz-border-radius: 10px    ;
+      -ms-border-radius: 10px    ;
+      -o-border-radius: 10px    ;
+}
+  }
   &__controls{
-    @include flex(flex-start,center)
+    @include flex(flex-start,center);
   }
   &__btn{
     @extend %btn-input-reset;
     width: 35px;
     height: 35px;
     margin-right: 7px;
+    cursor: pointer;
   }
   &__btn_play{
     width: 45px;

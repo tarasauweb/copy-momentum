@@ -1,10 +1,13 @@
-import playList from "./playlists";
-import { momentumPlayList } from "./playlists";
+import players from "./players";
+import { momentumPlayList } from "./players";
+
+const myStorage = window.localStorage;
 class Player {
     playerDiv:HTMLElement;
     track : HTMLAudioElement;
+    timer:any;
     constructor(playerDiv:HTMLElement) {
-        
+        this.timer = null ;
         this.playerDiv = playerDiv;
         this.track = new Audio () ;
         this.renderPlayer ('Momentum');
@@ -13,27 +16,31 @@ class Player {
     }
 
     mixPlayList () {
+        clearInterval(this.timer)
         this.track.pause();
         this.track.currentTime = 0.0;
-      return this.playerDiv.innerHTML = playList.Mix
+      return this.playerDiv.innerHTML = players.Mix
     }
 
     phonkPlayList () {
+        clearInterval(this.timer)
         this.track.pause();
         this.track.currentTime = 0.0;
-        return this.playerDiv.innerHTML = playList.Phonk
+        return this.playerDiv.innerHTML = players.Phonk
     }
 
     deepPlayList () {
+        clearInterval(this.timer)
         this.track.pause();
         this.track.currentTime = 0.0;
-        return this.playerDiv.innerHTML = playList.Deep
+        return this.playerDiv.innerHTML = players.Deep
     }
 
     momentumPlayer () {
+        clearInterval(this.timer)
         this.track.pause();
         this.track.currentTime = 0.0;
-        this.playerDiv.innerHTML = playList.Momentum
+        this.playerDiv.innerHTML = players.Momentum
         this.momentumPlay();
         return this.playerDiv
     }
@@ -49,11 +56,15 @@ class Player {
         const timeSongFull = document.querySelector('.player__time-full') as HTMLElement;
         const playerWave = document.querySelector('.player__wave') as HTMLElement;
         const playerWaveNow = document.querySelector('.player__wave-now') as HTMLElement;
+        const playerVolume = document.querySelector('.player__volume') as HTMLElement;
+        const playerVolumeValue = document.querySelector('.player__volume-value') as HTMLElement;
+        const playerBtnVolume = document.querySelector('.player__btn-volume') as HTMLElement;
+        const playerBtnVolumeSpan = document.querySelector('.player__btn-volume span') as HTMLElement;
         const playerWaveWidth = playerWave.clientWidth;
-        let timer : any = null ;
         const arrSongName : string[] = [];
         const arrSongLink : string[] = [];
         const arrHTMLElems : Array<HTMLElement> = [];
+        let mute : boolean = false;
         let numberSong : number = 0 ;
         let songPlay : boolean = false;
         let track = new Audio ();
@@ -71,7 +82,23 @@ class Player {
             playlist.insertAdjacentElement('beforeend' , li)
         })
 
+        
+
         track.src = arrSongLink[numberSong];
+        myStorage.getItem('volume') !== null ? track.volume = (parseFloat(myStorage.getItem('volume') as string)) : track.volume = playerVolumeValue.clientWidth / 100;
+        myStorage.getItem('volume') !== null ? playerVolumeValue.style.width = (parseFloat(myStorage.getItem('volume') as string)*100) + `px` : playerVolumeValue.style.width = playerVolumeValue.clientWidth + 'px';
+        playerBtnVolume.addEventListener('click' , ()=>{
+            
+           if(mute) {
+            track.muted = false;
+            playerBtnVolumeSpan.style.opacity = `0`;
+            return mute = false;
+           }
+           mute = true;
+           playerBtnVolumeSpan.style.opacity = `1`;
+           track.muted = true;
+        })
+        
         playBtn.addEventListener('click' , ()=>{
             this.track = track;
             if(songPlay){
@@ -79,7 +106,7 @@ class Player {
                 arrHTMLElems[numberSong].classList.add('player__track_active');
                 playImg.classList.toggle('d-none');
                 pauseImg.classList.toggle('d-none');
-                clearInterval(timer);
+                clearInterval(this.timer);
                 return songPlay = false;
             }
             track.play();
@@ -92,21 +119,39 @@ class Player {
             
         })
 
-        track.addEventListener('ended' , ()=>{
-            nextSongPlay();
+        playerVolume.addEventListener('click' , (e)=>{
+            let volumeValue = e.offsetX;
+            playerVolumeValue.style.width = volumeValue + 'px';
+            track.volume = volumeValue / 100;
+            let volumeStr = `${track.volume}`
+            myStorage.setItem('volume' , volumeStr )
+            console.log(volumeValue)
         })
 
-        const nextSongPlay = () => {
+        track.addEventListener('ended' , ()=>{
+            prevOrNextSongPlay('+');
+        })
+
+        const prevOrNextSongPlay = (operation:'-' | `+`) => {
             playImg.classList.add('d-none');
             pauseImg.classList.remove('d-none');
             track.pause();
             songPlay = true;
             track.currentTime = 0.0;
             
-            numberSong++;
+            if(operation === '+') {
+                numberSong++;
+            }
+            if(operation === '-'){
+                numberSong--;
+            }
+            if(numberSong <= 0) {
+                numberSong = arrSongLink.length - 1;
+            }
             if(numberSong>=arrSongLink.length){
                 numberSong = 0;
             }
+            
             track = new Audio (arrSongLink[numberSong]);
             track.addEventListener('loadeddata' , ()=>{
                 track.play();
@@ -120,18 +165,21 @@ class Player {
                 setTimerSong(track)
             })
             track.addEventListener('ended' , ()=>{
-                nextSongPlay();
+                prevOrNextSongPlay(`+`);
 
             })
             
             this.track = track;
         }
         nextSongBtn.addEventListener('click' , ()=>{
-            nextSongPlay();
+            prevOrNextSongPlay(`+`);
+        })
+        prevSongBtn.addEventListener('click' , ()=>{
+            prevOrNextSongPlay(`-`)
         })
 
-        function setTimerSong (track:HTMLAudioElement) {
-            clearInterval(timer)
+        const setTimerSong = (track:HTMLAudioElement) =>{
+            clearInterval(this.timer)
             const time = track.duration;
             const timeMinuts = Math.floor(time / 60);
             const timeSeconds = Math.floor(time - (timeMinuts*60));
@@ -148,13 +196,11 @@ class Player {
                 playerWaveNow.style.width = length + 'px'
             })
 
-            console.log(length)
-
             let minutsNow = 0;
             let secondsNow = 0;
             let timeNow = ''
 
-            timer = setInterval(()=>{
+            this.timer = setInterval(()=>{
                 const secondsAfterPlayBackStarts = Math.floor(track.currentTime);
                 minutsNow = Math.floor((time - (time - secondsAfterPlayBackStarts)) / 60);
                 secondsNow = Math.floor((time - (time - secondsAfterPlayBackStarts))%60)
@@ -163,10 +209,8 @@ class Player {
                 secondsNow < 10 ? timeNow += `0${secondsNow}` : timeNow += `${secondsNow}`;
                 timeSongNow.textContent = timeNow
                 
-                
-                
                 if(track.currentTime === track.duration) {
-                    clearInterval(timer)
+                    clearInterval(this.timer)
                     minutsNow = 0;
                     secondsNow = 0;
                     timeNow = '00:00';
