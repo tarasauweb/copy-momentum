@@ -15,9 +15,15 @@ body{
     position: relative;
     background-blend-mode: multiply;
     transition: background-image 1s ease-in-out;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
+    // display: flex;
+    // flex-direction: column;
+    // justify-content: space-between;
+    display: grid;
+    grid-template-rows: 1fr 1fr 1fr;
+    grid-template-areas: "header"
+                          "main"
+                          "footer"
+    ;
 }
 a,ul,li,button{
     display: block;

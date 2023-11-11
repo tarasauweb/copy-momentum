@@ -1,6 +1,7 @@
 .footer{
   position: relative;
   grid-area: footer;
+  align-self:self-end;
   padding-bottom: 20px;
   .settings{
     @extend %btn-input-reset;
