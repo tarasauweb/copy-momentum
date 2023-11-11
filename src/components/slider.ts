@@ -1,4 +1,5 @@
 import TypeApiSlider from "./typesApiSlider";
+import frameViddeoFone from "./video";
 class Slider {
   btnPrev: HTMLElement;
   btnNext: HTMLElement;
@@ -7,6 +8,7 @@ class Slider {
   api: object;
   timeOfDay:string;
   arrayImage : Array<string>;
+  activeVideoFone:boolean;
   constructor(
     btnPrev: HTMLElement,
     btnNext: HTMLElement,
@@ -21,6 +23,7 @@ class Slider {
     this.timeOfDay = '';
     this.arrayImage = [];
     this.menuBackGround = menuBackGround;
+    this.activeVideoFone = false;
     this.setBackground('flickr');
     this.listenerMenu ();
   }
@@ -47,30 +50,61 @@ class Slider {
       this.setBackground(api);
     })
   }
+  private getVideoFone () : Array<string>{
+    this.activeVideoFone = true;
+    this.arrayImage = Object.values(frameViddeoFone);
+    this.body.style.backgroundColor = `rgb(41, 36, 36)`;
+    return this.arrayImage;
+  }
   private setBackground (apiSlider:TypeApiSlider) {
     this.clearArrayImage(this.arrayImage);
-    apiSlider === 'flickr' ? this.listenerSlider(this.getFlickrApi()) : apiSlider === 'unsplash' ? this.listenerSlider(this.getUnspleshApi()) : false ;
+    apiSlider === 'flickr' ? this.listenerSlider(this.getFlickrApi()) : apiSlider === 'unsplash' ? this.listenerSlider(this.getUnspleshApi()) : apiSlider === 'animation' ? this.listenerSlider(this.getVideoFone ()) : false ;
   }
   private listenerSlider (data : Array<string>) {
+    this.removeVideo ();
     let numberSlide = 0;
+    if(this.activeVideoFone) {
+      this.body.insertAdjacentHTML('afterbegin' , this.arrayImage[numberSlide])
+    }
     this.btnPrev.addEventListener('click' , ()=>{
+      this.removeVideo();
       --numberSlide;
       if(numberSlide <= 0) {
         numberSlide = data.length-1;
       }
-      this.body.style.background = this.returnUrlSlider(data[numberSlide]);
+      if(this.activeVideoFone) {
+        if(this.arrayImage[numberSlide]){
+          this.body.insertAdjacentHTML('afterbegin' , this.arrayImage[numberSlide])
+        }
+        
+      }
+      else{
+        this.body.style.background = this.returnUrlSlider(data[numberSlide]);
+      }
     })
-
     this.btnNext.addEventListener('click' , ()=>{
+      this.removeVideo();
       ++numberSlide;
       if(numberSlide >= data.length) {
         numberSlide = 0;
       }
-      this.body.style.background = this.returnUrlSlider(data[numberSlide]);
+      if(this.activeVideoFone) {
+        
+        this.body.insertAdjacentHTML('afterbegin' , this.arrayImage[numberSlide])
+      }
+      else{
+        this.body.style.background = this.returnUrlSlider(data[numberSlide]);
+      }
     })
-    
+  }
+  private removeVideo () {
+    const videoHTML = document.querySelector('.video-fone') as HTMLElement;
+      if(videoHTML){
+        videoHTML.remove();
+    }
   }
   private getFlickrApi () : Array<string> {
+    this.activeVideoFone = false;
     this.timeOfDay = this.getTimeOfDay();
     const getUrl = (this.api as any).flickr[`${this.timeOfDay}`];
     async function flickr () {
@@ -90,6 +124,7 @@ class Slider {
     return this.arrayImage;
   }
   private getUnspleshApi () : Array<string> {
+    this.activeVideoFone = false;
     this.timeOfDay = this.getTimeOfDay();
     const getUrl = (this.api as any).unsplash[`${this.timeOfDay}`];
     async function unsplash () {

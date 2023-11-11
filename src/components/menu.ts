@@ -41,6 +41,9 @@ function Menu () : string {
               <li class="menu__subitem">
                 unsplash
               </li>
+              <li class="menu__subitem menu__subitem_animation">
+                animation
+              </li>
             </ul>
           </li>
         </ul>

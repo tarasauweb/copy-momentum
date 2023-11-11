@@ -1,2 +1,2 @@
-type TypeApiSlider = 'flickr' | 'unsplash';
+type TypeApiSlider = 'flickr' | 'unsplash' | 'animation';
 export default TypeApiSlider

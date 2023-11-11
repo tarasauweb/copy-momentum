@@ -32,12 +32,16 @@ class Weather {
     try{
       const response = await fetch(urlWather);
       const data = await response.json();
-      this.imgWeather.classList.add(`owf-${data.weather[0].id}`);
+      // this.imgWeather.classList.add(`owf-${data.weather[0].id}`);
       this.imgWeather.style.display = 'block';
       this.weatherdescription.textContent = `${data.weather[0].main}`
       this.divTemperature.textContent = `Temperature: ${Math.floor(data.main.temp)}°C`;
       this.divWind.textContent = `Wind speed: ${data.wind.speed} m/s`;
       this.divHumidity.textContent = `Humidity: ${data.main.humidity}%`;
+      console.log(data.weather[0].icon)
+      const urlImgiconWeather = `https://openweathermap.org/img/wn/${data.weather[0].icon}.png`;
+      this.imgWeather.setAttribute('src' , urlImgiconWeather)
+      
     }
     catch(err){
       this.imgWeather.style.display = 'none';

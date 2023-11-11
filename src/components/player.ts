@@ -1,6 +1,7 @@
 import players from "./players";
 import { momentumPlayList } from "./players";
 
+
 const myStorage = window.localStorage;
 class Player {
     playerDiv:HTMLElement;
@@ -19,7 +20,7 @@ class Player {
         clearInterval(this.timer)
         this.track.pause();
         this.track.currentTime = 0.0;
-      return this.playerDiv.innerHTML = players.Mix
+        return this.playerDiv.innerHTML = players.Mix
     }
 
     phonkPlayList () {

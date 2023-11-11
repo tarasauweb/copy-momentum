@@ -13,11 +13,16 @@
     width: 100%;
     padding-bottom: 7px;
   }
+  &__temp{
+    margin-top: -5px;
+  }
   &__desc{
     @include flex(flex-start);
     margin-top: 10px;
     .weather__img{
       margin-left: 5px;
+      width: 30px;
+      height: auto;
     }
   }
 }
