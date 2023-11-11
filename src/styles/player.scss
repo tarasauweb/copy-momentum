@@ -1,4 +1,8 @@
 .player{
+  iframe{
+    position: absolute;
+    width: 300px;
+  }
   &__wave{
     height: 3px;
     border-radius: 5px;

@@ -51,7 +51,7 @@ function Menu () : string {
       <li class="menu__items">
         <ul class="menu__subscribe">
           <li class="menu__span">
-            Close widget
+            Hide widget
           </li>
         </ul>
         <ul class="menu__nav">
