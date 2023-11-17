@@ -64,7 +64,8 @@ class Slider {
     this.removeVideo ();
     let numberSlide = 0;
     if(this.activeVideoFone) {
-      this.body.insertAdjacentHTML('afterbegin' , this.arrayImage[numberSlide])
+      this.body.insertAdjacentHTML('afterbegin' , this.arrayImage[numberSlide]);
+      this.setWidthVideoFone();
     }
     this.btnPrev.addEventListener('click' , ()=>{
       this.removeVideo();
@@ -74,9 +75,10 @@ class Slider {
       }
       if(this.activeVideoFone) {
         if(this.arrayImage[numberSlide]){
-          this.body.insertAdjacentHTML('afterbegin' , this.arrayImage[numberSlide])
+          this.body.insertAdjacentHTML('afterbegin' , this.arrayImage[numberSlide]);
+          this.setWidthVideoFone();
         }
-        
+        return
       }
       else{
         this.body.style.background = this.returnUrlSlider(data[numberSlide]);
@@ -90,7 +92,9 @@ class Slider {
       }
       if(this.activeVideoFone) {
         
-        this.body.insertAdjacentHTML('afterbegin' , this.arrayImage[numberSlide])
+        this.body.insertAdjacentHTML('afterbegin' , this.arrayImage[numberSlide]);
+        this.setWidthVideoFone();
+        return;
       }
       else{
         this.body.style.background = this.returnUrlSlider(data[numberSlide]);
@@ -102,6 +106,11 @@ class Slider {
       if(videoHTML){
         videoHTML.remove();
     }
+  }
+  private setWidthVideoFone () {
+    const widthWindow = document.body.clientWidth;
+    const videoHTML = document.querySelector('.video-fone') as HTMLElement;
+    videoHTML.style.width = `${widthWindow}px`;
   }
   private getFlickrApi () : Array<string> {
     this.activeVideoFone = false;
