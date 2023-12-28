@@ -17,9 +17,6 @@ function Menu () : string {
                 Phonk
               </li>
               <li class="menu__subitem">
-                Deep
-              </li>
-              <li class="menu__subitem">
                 Momentum
               </li>
             </ul>

@@ -1,7 +1,6 @@
 enum players {
     'Mix' = '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1E39HnSOC4Gw4A?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>',
     'Phonk' = '<iframe style="border-radius:12px" src="https://open.spotify.com/embed/playlist/37i9dQZF1EIgYfmEYKmd2h?utm_source=generator" width="100%" height="352" frameBorder="0" allowfullscreen="" allow="autoplay; clipboard-write; encrypted-media; fullscreen; picture-in-picture" loading="lazy"></iframe>',
-    'Deep' = '<iframe width="100%" height="352" src="https://www.youtube.com/embed/0tTO-JiGKw0?si=WOL1TAWz_yQrNgY5" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" allowfullscreen></iframe>',
     'Momentum' = `<div class="iframe">
                     <div class="player__subblock">
                         <div class="player__main">
@@ -54,8 +53,6 @@ enum players {
 }
 
 interface IMomentumPlayList {
-    'Test1' : ITrack,
-    'Test' : ITrack,
     'Linkin Park' : ITrack ,
    'Mr.Kitty' : ITrack , 
     'Skeler' : ITrack,
@@ -66,14 +63,6 @@ interface ITrack {
     link : string,
 }
 export const momentumPlayList : IMomentumPlayList = {
-    'Test1' : {
-        name : 'Test1 - tack1',
-        link: '../music/korotkaya - test.mp3',
-    },
-    'Test' : {
-        name : 'Test - tack',
-        link: '../music/otkryitie - test.mp3',
-    },
     'Linkin Park' : {
         name : 'Linkin Park - Lost',
         link: '../music/Linkin Park – Lost.mp3',

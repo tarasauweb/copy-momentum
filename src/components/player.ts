@@ -30,13 +30,6 @@ class Player {
         return this.playerDiv.innerHTML = players.Phonk
     }
 
-    deepPlayList () {
-        clearInterval(this.timer)
-        this.track.pause();
-        this.track.currentTime = 0.0;
-        return this.playerDiv.innerHTML = players.Deep
-    }
-
     momentumPlayer () {
         clearInterval(this.timer)
         this.track.pause();
@@ -232,7 +225,7 @@ class Player {
 
     private renderPlayer (playListName:string) {
         this.playerDiv.innerHTML = '';
-        playListName === 'Mix' ?  this.mixPlayList () : playListName === 'Phonk' ? this.phonkPlayList() : playListName === 'Deep' ?  this.deepPlayList() : playListName === 'Momentum' ? this.momentumPlayer() : false;
+        playListName === 'Mix' ?  this.mixPlayList () : playListName === 'Phonk' ? this.phonkPlayList() : playListName === 'Momentum' ? this.momentumPlayer() : false;
     }
 }
 
