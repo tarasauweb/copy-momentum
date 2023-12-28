@@ -139,7 +139,7 @@ class Player {
             if(operation === '-'){
                 numberSong--;
             }
-            if(numberSong <= 0) {
+            if(numberSong < 0) {
                 numberSong = arrSongLink.length - 1;
             }
             if(numberSong>=arrSongLink.length){
